@@ -3,8 +3,8 @@ import * as admin from "firebase-admin";
 
 // Secure a connection to firebase from backend
 const serviceAccount = require("../../../permissions.json");
-serviceAccount.private_key_id = process.env.FIREBASE_PRIVATE_KEY_ID;
-serviceAccount.private_key = process.env.FIREBASE_PRIVATE_KEY;
+// serviceAccount.private_key_id = process.env.FIREBASE_PRIVATE_KEY_ID;
+// serviceAccount.private_key = process.env.FIREBASE_PRIVATE_KEY;
 
 const app = !admin.apps.length
   ? admin.initializeApp({
@@ -15,7 +15,7 @@ const app = !admin.apps.length
 // Establish Connection to Stripe
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const endpointSecret = process.env.STRIPE_SECRET_KEY;
+const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
 const fulfillOrder = async (session) => {
   console.log("Fulfilling Order", session);
